@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.aside {
+  position: fixed;
+  left: 0;
+  background-color: grey;
+  font-size: 2rem;
+  height: 100%;
+  width: 250px;
+  text-align: right;
+  background-color: #264653;
+  color: aliceblue;
+}
+
+.aside ul {
+  list-style: none;
+  text-decoration: none;
+  padding-top: 1em;
+}
+
+.aside ul li {
+  padding-right: 1em;
+  line-height: 1.5;
+  display: block;
+}
+
+.aside ul li:hover {
+  background-color: #426472;
+}
