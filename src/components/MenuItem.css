@@ -1,0 +1,28 @@
+.box {
+  padding: 1.5em;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.box img {
+  height: 10rem;
+  margin: 1rem 0;
+}
+
+.box h3 {
+  color: var(--black);
+  font-size: 1.7rem;
+}
+
+.box span {
+  color: var(--green);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--green);
+  display: block;
+}
