@@ -1,9 +1,8 @@
-import Aside from './components/Aside'
-//import './App.css';
+import Navbar from './components/Navbar'
 
 function App() {
   return <>
-  <Aside />
+  <Navbar />
   </>
 }
 
