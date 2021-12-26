@@ -1,0 +1,48 @@
+.login {
+  background-color: white;
+  margin: 2em auto;
+  width: 30%;
+  border-radius: 10px;
+  padding: 2em;
+  box-shadow: var(--box-shadow);
+}
+
+.login form {
+  padding: 0 auto;
+}
+
+form .textField {
+  position: relative;
+  border-bottom: 2px solid var(--light-color);
+  margin: 3em 0;
+}
+
+.textField input {
+  width: 100%;
+  padding: 0 0.5em;
+  height: 2rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+}
+
+.textField label {
+  position: absolute;
+  top: 0.3em;
+  left: 0.5em;
+  color: var(--light-color);
+  pointer-events: none;
+}
+
+.textField input:focus + label {
+  top: -1.5em;
+  color: var(--green);
+}
+
+.signupLink {
+  margin: 1.5em 0;
+}
+
+#login {
+  display: none;
+}

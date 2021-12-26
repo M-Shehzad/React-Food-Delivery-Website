@@ -1,5 +1,5 @@
 import React from 'react';
-import './MenuItem.css'
+import './MenuItem.css';
 import image from './food.png';
 
 export default function MenuItem(props){
