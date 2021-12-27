@@ -1,3 +1,6 @@
+body {
+  background-color: var(--green);
+}
 .login {
   background-color: white;
   margin: 2em auto;

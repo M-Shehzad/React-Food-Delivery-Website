@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import Menu from './components/homepage/Menu';
+import Login from './components/loginpage/Login';
 import { BrowserRouter } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 function App() {
@@ -18,9 +19,10 @@ function App() {
 
   return <>
     <BrowserRouter>
-    <Navbar />
+    {/* <Navbar />
     <Menu
-    menuData = {menuData} />
+    menuData = {menuData} /> */}
+    <Login />
     </BrowserRouter>
   </>
 }
