@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import Menu from './components/homepage/Menu';
+import { BrowserRouter } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 function App() {
 
@@ -16,9 +17,11 @@ function App() {
   }, [])
 
   return <>
+    <BrowserRouter>
     <Navbar />
     <Menu
     menuData = {menuData} />
+    </BrowserRouter>
   </>
 }
 
