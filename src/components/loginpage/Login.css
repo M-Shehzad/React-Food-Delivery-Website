@@ -34,7 +34,8 @@ form .textField {
   pointer-events: none;
 }
 
-.textField input:focus + label {
+.textField input:focus + label,
+.textField input:valid + label {
   top: -1.5em;
   color: var(--green);
 }
