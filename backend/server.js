@@ -1,4 +1,5 @@
 const express = require("express");
+const { send } = require("express/lib/response");
 
 const app = express();
 
@@ -26,8 +27,11 @@ db.connect(function(err) {
   console.log('connected as id ' + db.threadId);
 });
 
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
-app.get('/menu',(req,res)=>{
+
+app.get('/menuItem',(req,res)=>{
   let sql = 'SELECT * FROM MENU';
   db.query(sql,(err,result)=>{
     if(err) throw err;
@@ -38,6 +42,28 @@ app.get('/menu',(req,res)=>{
 app.get('/shit',(req,res)=>{
   res.send('this shit works!');
 });
+
+app.post('/login',(req,res)=>{
+  console.log(req.body);
+})
+
+app.post('/register',(req,res)=>{
+  const {username,password,email} =req.body;
+  let sql=`SELECT username FROM registry WHERE EXISTS (SELECT username FROM registry WHERE username ='${username}')`;
+  db.query(sql,(err,result)=>{
+    if(err) throw err;
+    if (result.length){
+      res.send('username already exists');
+      console.log(result);
+    }
+    else{
+      db.query(`INSERT INTO registry VALUES ('${username}','${password}','${email}')`,(err,result)=>{
+        if(err) throw err;
+        res.redirect('/menu');
+      })
+    }
+  })
+})
 
 app.listen(4000,()=>{
     console.log('server started?');

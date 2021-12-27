@@ -1,14 +1,15 @@
 import Navbar from './components/Navbar';
 import Menu from './components/homepage/Menu';
 import Login from './components/loginpage/Login';
-import { BrowserRouter } from 'react-router-dom';
+import Register from './components/loginpage/Register';
+import { BrowserRouter, Routes,Switch, Route } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 function App() {
 
   const [menuData, setmenuData] = useState([{}]);
 
   useEffect(() => {
-    fetch('/menu')
+    fetch('/menuItem')
       .then(response => response.json())
       .then(data => {
         console.log(data)
@@ -17,14 +18,19 @@ function App() {
 
   }, [])
 
-  return <>
+  return (<>
     <BrowserRouter>
-    {/* <Navbar />
-    <Menu
-    menuData = {menuData} /> */}
-    <Login />
+        <Navbar />
+      <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/' element ={
+          <Menu
+          menuData = {menuData} />
+        } />
+      </Routes>
     </BrowserRouter>
-  </>
+  </>)
 }
 
 export default App;

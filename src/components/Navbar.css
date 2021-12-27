@@ -54,8 +54,13 @@ header .icons:hover {
   background-color: var(--green);
 }
 
-header #signup {
+header #loginlink {
   font-size: 1.2rem;
   border-radius: 50%;
   background: #fff;
+}
+
+#loginlink:hover {
+  color: var(--green);
+  letter-spacing: 1.2;
 }

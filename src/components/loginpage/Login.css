@@ -1,7 +1,4 @@
-body {
-  background-color: var(--green);
-}
-.login {
+.center {
   background-color: white;
   margin: 2em auto;
   width: 30%;
@@ -10,7 +7,7 @@ body {
   box-shadow: var(--box-shadow);
 }
 
-.login form {
+.center form {
   padding: 0 auto;
 }
 
@@ -45,8 +42,4 @@ form .textField {
 
 .signupLink {
   margin: 1.5em 0;
-}
-
-#login {
-  display: none;
 }

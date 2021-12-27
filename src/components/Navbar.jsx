@@ -13,8 +13,10 @@ export default function Navbar(){
         </nav>
 
         <div>
+        <Link to='cart'>
         <i className="fas fa-shopping-cart icons"></i>
-        <a href="" id="signup">Sign up</a>
+        </Link>
+        <Link to='/login' id='loginlink'>Login</Link>
         </div>
     </header>
     </>)
