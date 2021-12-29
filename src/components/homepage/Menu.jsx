@@ -8,11 +8,12 @@ export default function Menu(props){
     <h1 className='heading'>Menu</h1>
     <div className="box-container">
     {props.menuData.map((data)=>{
-      console.log(data.ITEM_NAME);
+      // console.log(data.ITEM_NAME);
       return (<MenuItem 
       key = {data.ITEM_NAME}
-      name = {data.ITEM_NAME}
-      price = {data.PRICE}
+      ITEM_NAME = {data.ITEM_NAME}
+      PRICE = {data.PRICE}
+      addProduct = {props.addProduct}
       />)
     })}
     </div>

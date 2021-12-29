@@ -7,10 +7,10 @@ export default function Navbar(){
     <header>
         <Link to='/' className="logo"><i className="fas fa-utensils"></i>Kudla Eats</Link>
 
-        <nav className="navbar">
+        {/* <nav className="navbar">
             <a href="">Menu</a>
             <a href="">Deliveries</a>
-        </nav>
+        </nav> */}
 
         <div>
         <Link to='cart'>
