@@ -14,6 +14,7 @@ export default function Menu(props){
       ITEM_NAME = {data.ITEM_NAME}
       PRICE = {data.PRICE}
       addProduct = {props.addProduct}
+      removeProduct = {props.removeProduct}
       />)
     })}
     </div>

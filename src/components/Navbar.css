@@ -64,3 +64,8 @@ header #loginlink {
   color: var(--green);
   letter-spacing: 1.2;
 }
+
+.cart-length {
+  vertical-align: super;
+  font-size: 0.8rem;
+}

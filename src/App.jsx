@@ -34,7 +34,21 @@ function App() {
     }
   }
 
-  const removeProduct=(product)=>{}
+  const removeProduct=(product)=>{
+    const ProductExist = cartItems.find((item)=>item.ITEM_NAME === product.ITEM_NAME);
+    if(ProductExist.quantity===1){
+      setCartItems(cartItems.filter((item)=>item.ITEM_NAME!==product.ITEM_NAME));
+    }
+    else{
+      setCartItems(
+        cartItems.map((item)=>
+        item.ITEM_NAME ===product.ITEM_NAME
+        ?{...ProductExist,quantity:ProductExist.quantity -1}
+        :item
+        )
+      )
+    }
+  }
   
 
   return (<>
@@ -46,12 +60,14 @@ function App() {
         <Route path='/' element ={
           <Menu
           menuData = {menuData}
-          addProduct={addProduct} />
+          addProduct={addProduct}
+          removeProduct ={removeProduct} />
         } />
         <Route path='/cart' element={
           <Cart 
           cartItems={cartItems}
           addProduct={addProduct}
+          removeProduct={removeProduct}
          />} />
       </Routes>
     </BrowserRouter>

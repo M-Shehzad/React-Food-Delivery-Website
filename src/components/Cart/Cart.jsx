@@ -3,7 +3,10 @@ import './CartItem';
 import './Cart.css';
 import CartItem from './CartItem';
 
-export default function Orderlist(props){
+export default function Cart(props){
+
+    const totalPrice = props.cartItems.reduce((price,item)=>price+item.quantity*item.PRICE,0)
+
     return(<section className="cart">
     <h1 className="heading">Your Orders</h1>
     <div className="header">
@@ -20,11 +23,12 @@ export default function Orderlist(props){
         PRICE = {item.PRICE}
         quantity = {item.quantity}
         addProduct = {props.addProduct}
+        removeProduct = {props.removeProduct}
         />)
     })}
     {props.cartItems.length!==0 &&(<div className="checkout">
         <h1 className="subtotal">sub total</h1>
-        <h1 className="total-amount">$200</h1>
+        <h1 className="total-amount"><i className="fas fa-rupee-sign"></i>{totalPrice}</h1>
     </div>)}
 </section>)
 }

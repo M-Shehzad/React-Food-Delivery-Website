@@ -45,7 +45,7 @@
   align-items: center;
 }
 
-.cart-items:last-of-type {
+.order-items {
   border-bottom: 1px solid var(--light-color);
   padding-bottom: 3em;
 }
@@ -113,6 +113,8 @@
 }
 
 .checkout {
+  padding-top: 1em;
+  border-top: 1px solid var(--light-color);
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -14,7 +14,7 @@ export default function Navbar(){
 
         <div>
         <Link to='cart'>
-        <i className="fas fa-shopping-cart icons"></i>
+        <i className="fas fa-shopping-cart icons"><span className="cart-length">3</span></i>
         </Link>
         <Link to='/login' id='loginlink'>Login</Link>
         </div>

@@ -40,11 +40,23 @@ app.get('/menuItem',(req,res)=>{
 });
 
 app.get('/shit',(req,res)=>{
-  res.send('this shit works!');
-});
+  res.send('yo this shit works!');
+})
 
 app.post('/login',(req,res)=>{
-  console.log(req.body);
+  console.log(req.body)
+  const {username,password} =req.body;
+  let sql=`SELECT username FROM registry WHERE username='${username}' and password='${password}' `;
+  db.query(sql,(err,result)=>{
+    if(err) throw err;
+    console.log(result.length)
+    if(result.length){
+      res.json('success')
+    }
+    else{
+      res.json('Invalid');
+    }
+  })
 })
 
 app.post('/register',(req,res)=>{
