@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import {Link} from 'react-router-dom';
 import './Navbar.css';
+import { UserContext } from "../UserContext";
 
 export default function Navbar(){
+    const [logState,setLogState] = useContext(UserContext);
     return(<>
     <header>
         <Link to='/' className="logo"><i className="fas fa-utensils"></i>Kudla Eats</Link>
@@ -13,10 +15,11 @@ export default function Navbar(){
         </nav> */}
 
         <div>
+            <Link to='user'>{logState}</Link>
         <Link to='cart'>
         <i className="fas fa-shopping-cart icons"><span className="cart-length">3</span></i>
         </Link>
-        <Link to='/login' id='loginlink'>Login</Link>
+        <Link onClick={()=>setLogState()} to='/login' id='loginlink'>{logState?'Logout':'Login'}</Link>
         </div>
     </header>
     </>)

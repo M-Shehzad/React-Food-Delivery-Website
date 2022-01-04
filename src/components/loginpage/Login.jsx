@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {Link,useNavigate} from 'react-router-dom';
+import { UserContext } from '../../UserContext';
 import './Login.css';
 
 export default function LogState(){
-
+    const [logState,setLogState] = useContext(UserContext);
     let navigate =useNavigate();
-    const [username,setUsername] = useState('')
-    const [password,setPassword] = useState('')
+    const [username,setUsername] = useState('');
+    const [password,setPassword] = useState('');
 
     function login(username,password){
         console.log(username,password);
@@ -25,6 +26,7 @@ export default function LogState(){
             console.log(data)
             if(data=='success'){
                 navigate('/');
+                setLogState(username);
                 alert('Login Sucessful!');
             }
             else{

@@ -3,10 +3,12 @@ import Menu from './components/homepage/Menu';
 import Login from './components/loginpage/Login';
 import Register from './components/loginpage/Register';
 import Cart from './components/Cart/Cart';
+import { UserContext } from './UserContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 function App() {
 
+  const [logState,setLogState] = useState();
   const [menuData, setmenuData] = useState([{}]);
 
   useEffect(() => {
@@ -31,6 +33,7 @@ function App() {
       {...ProductExist, quantity:ProductExist.quantity+1}:item));
     }else{
       setCartItems([...cartItems,{...product,quantity:1}]);
+      // console.log(cartItems);
     }
   }
 
@@ -49,10 +52,15 @@ function App() {
       )
     }
   }
+
+  const cartClearance = ()=>{
+    setCartItems([]);
+  }
   
 
   return (<>
     <BrowserRouter>
+    <UserContext.Provider value={[logState,setLogState]}>
         <Navbar />
       <Routes>
         <Route path='/login' element={<Login />} />
@@ -68,8 +76,10 @@ function App() {
           cartItems={cartItems}
           addProduct={addProduct}
           removeProduct={removeProduct}
-         />} />
+          cartClearance={cartClearance}
+          />} />
       </Routes>
+    </UserContext.Provider>
     </BrowserRouter>
   </>)
 }
