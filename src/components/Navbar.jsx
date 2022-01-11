@@ -14,11 +14,11 @@ export default function Navbar(){
             <a href="">Deliveries</a>
         </nav> */}
 
-        <div>
-            <Link to='user'>{logState}</Link>
+        <div className="navbar-items">
         <Link to='cart'>
         <i className="fas fa-shopping-cart icons"><span className="cart-length">3</span></i>
         </Link>
+            {logState?<Link className="user" to='user'><i class="fas fa-user"></i>{logState}</Link>:''}
         <Link onClick={()=>setLogState()} to='/login' id='loginlink'>{logState?'Logout':'Login'}</Link>
         </div>
     </header>

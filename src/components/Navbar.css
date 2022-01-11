@@ -39,7 +39,7 @@ header .navbar a:hover {
 
 header .icons {
   cursor: pointer;
-  margin-right: 1em;
+  /* margin-right: 1em; */
   line-height: 2;
   width: 2.5rem;
   text-align: center;
@@ -68,4 +68,24 @@ header #loginlink {
 .cart-length {
   vertical-align: super;
   font-size: 0.8rem;
+}
+
+.navbar-items > * {
+  font-weight: 600;
+  margin: 0 1em;
+}
+
+.user > .fa-user {
+  color: var(--green);
+  padding: 0.3em;
+  transform: translateY(-0.1em);
+}
+
+.user {
+  font-size: 1.2rem;
+  color: var(--black);
+}
+
+.user:hover {
+  color: var(--green);
 }
