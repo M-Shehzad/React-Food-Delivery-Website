@@ -119,3 +119,51 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.addresspay {
+  /* display: flex; */
+  flex-direction: column;
+  /* border: 1px solid black; */
+  margin-top: 2em;
+}
+
+.addresspay span {
+  padding-right: 1em;
+  font-weight: 600;
+  /* display: block; */
+  padding-top: 1em 0;
+  font-size: 1.2rem;
+  color: var(--black);
+}
+
+.addresspay h1 {
+  color: var(--black);
+  margin-top: 1em;
+}
+
+#address {
+  display: block;
+  background: #eee;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--black);
+  text-transform: none;
+  margin-bottom: 1em;
+  resize: none;
+  height: 10rem;
+  max-width: 70%;
+}
+
+#address:focus {
+  border: 2px solid var(--green);
+}
+
+#pay-type {
+  font-size: 1rem;
+}
+
+.order-btn {
+  display: flex;
+  justify-content: flex-end;
+}
