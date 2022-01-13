@@ -1,28 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import {useNavigate} from 'react-router-dom';
+import { UserContext } from '../../UserContext';
+
+import OrderItem from './OrderItem';
 import './prevOrder.css';
 
 export default function PrevOrder(){
+    let navigate = useNavigate();
+    const [logState,setLogState] = useContext(UserContext);
+    const [prevOrders,setPrevOrders] = useState([]);
+    
+
+    useEffect(()=>{
+
+        if(logState){
+            const fetchData = async()=>{let res = await fetch('/orderhistory',{
+            method:'POST',
+            headers:{
+                'content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                username:logState
+            })
+        })
+        let data = await res.json();
+        setPrevOrders(data);}
+        fetchData();
+        }
+        else{
+            alert('You are not logged in!');
+            navigate('/login');
+        }
+    },[logState])
+
+    console.log(prevOrders);
+    // console.log(prevOrders[0]['ITEMS'][3].ITEM_NAME);
+    if (!prevOrders) {
+        return (<div></div>)
+    }
     return(<>
-        <h1 className="heading">Your orders</h1>
-        <section className="previous-orders">
-            <div className="order-details">
-                <h1><i className="fas fa-receipt"></i>ORDER#12324</h1>
-                <div>
-                    <p>Ordered on Sun, May 30, 2021, 03:51 PM</p>
-                    <p>Delivered to kuntikana street</p>
-                </div>
-            </div>
-            <div className="prev-items">
-                <h2>Items</h2>
-                <ul>
-                    <li><div>Butter chicken <span>x2</span></div><span id="price">₹345</span></li>
-                    <li><div>Chicken kadai <span>x3</span></div><span id="price">₹543</span></li>
-                </ul>
-                <div className="checkout">
-                    <h1 className="checkout-title">sub total</h1>
-                    <h1 className="total-amount"><i className="fas fa-rupee-sign"></i>₹654</h1>
-                </div>
-            </div>
-        </section>
+    <h1 className="heading">Your orders</h1>
+    {prevOrders.map((order)=>{
+        return <OrderItem 
+        key = {order.ORDER_ID}
+        ORDER_ID = {order.ORDER_ID}
+        ADDRESS={order.ADDRESS}
+        ORDER_TIME={order.ORDER_TIME}
+        PAYMENT_AMT={order.payment_amt}
+        PAYMENT_TYPE ={order.payment_type}
+        ITEMS = {order['ITEMS']}
+        />
+    })}
     </>)
 }

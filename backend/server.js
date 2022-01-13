@@ -72,6 +72,44 @@ app.post('/register',(req,res)=>{
   })
 })
 
+
+app.post('/orderhistory',(req,res)=>{
+  const {username} =req.body;
+  let orderHistory=[];
+  console.log(username);
+  let sql = `
+  SELECT orders.*,payment.payment_type,payment.payment_amt
+  FROM orders
+  INNER JOIN payment
+  ON orders.order_id=payment.order_id
+  JOIN customer
+  ON orders.cust_id=customer.cust_id
+  WHERE customer.username='${username}';`;
+  db.query(sql,async(err,result)=>{
+    if(err) throw err;
+    orderHistory=[...result];
+    
+    for (let item of orderHistory){
+      sql=`select order_from.*,menu.price from order_from 
+      JOIN menu
+      ON order_from.ITEM_NAME = menu.ITEM_NAME
+      WHERE ORDER_ID=${item.ORDER_ID};`
+      if (!item.ITEMS){
+        item.ITEMS=[];
+      }
+      await new Promise((resolve) => {
+        db.query(sql,(err,result)=> {
+          if (err) throw err;
+          item.ITEMS.push(...result);
+          resolve();
+        });
+      })
+    }
+    res.json(orderHistory);
+  })
+})
+
+
 app.post('/order',(req,res)=>{
   const {ITEMS,address,payment_type,user} =req.body;
   console.log(ITEMS);
@@ -84,14 +122,6 @@ app.post('/order',(req,res)=>{
     WHERE USERNAME='${user}';`
   db.query(sql,(err,result)=>{
     if(err) throw err;
-    //mapping all the items ordered
-    ITEMS.map(item=>{
-      sql=`INSERT INTO order_from values(LAST_INSERT_ID(),'${item.ITEM_NAME}',${item.quantity});`;
-      db.query(sql,(err,result)=>{
-        if(err) throw err;
-        console.log('item inserted!');
-      })
-    })
     //inserting the miscellenous values
     sql =`UPDATE orders
     SET ORDER_TIME=NOW(),ADDRESS='${address}'
@@ -100,11 +130,19 @@ app.post('/order',(req,res)=>{
       if (err) throw err;
       console.log('Order Inserted!');
     })
-    
+    //insertion of payment
     sql=`INSERT INTO payment values(LAST_INSERT_ID(),'${payment_type}',NULL);`;
     db.query(sql,(err,result)=>{
       if(err) throw err;
       console.log('payment sucessful!');  
+    })
+    //mapping all the items ordered
+    ITEMS.map(item=>{
+      sql=`INSERT INTO order_from values(LAST_INSERT_ID(),'${item.ITEM_NAME}',${item.quantity});`;
+      db.query(sql,(err,result)=>{
+        if(err) throw err;
+        console.log('item inserted!');
+      })
     })
 
   })
