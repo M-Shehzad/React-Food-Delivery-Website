@@ -23,7 +23,7 @@ header .logo i {
   color: var(--green);
 }
 
-header .navbar a {
+header .navbar .navlink {
   text-transform: uppercase;
   font-size: 1.2rem;
   border-radius: 0.5rem;
@@ -31,8 +31,8 @@ header .navbar a {
   color: var(--light-color);
 }
 
-header .navbar a.active,
-header .navbar a:hover {
+header .navbar .navlink.active,
+header .navbar .navlink:hover {
   color: #fff;
   background: var(--green);
 }

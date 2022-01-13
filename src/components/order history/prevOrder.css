@@ -1,0 +1,62 @@
+.previous-orders {
+  padding: 1em 0;
+  max-width: 40rem;
+  margin: 5em auto;
+  box-shadow: var(--box-shadow);
+}
+.order-details {
+  display: flex;
+  padding: 0 3.5em;
+  padding-bottom: 1em;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.order-details h1 {
+  color: var(--black);
+  white-space: nowrap;
+}
+.order-details h1 .fa-receipt {
+  color: var(--green);
+}
+
+.order-details p {
+  text-align: right;
+  color: #9c9c9c;
+}
+.prev-items {
+  margin: 0 2em;
+}
+
+.prev-items h2 {
+  color: var(--black);
+  padding-bottom: 0.2em;
+}
+.previous-orders ul {
+  padding: 0 0.1em;
+  list-style: none;
+}
+.previous-orders ul li {
+  padding: 0.3em 0;
+  border-bottom: 1px solid #e2e2e2;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+.previous-orders ul li span {
+  color: #9c9c9c;
+  padding-left: 1em;
+}
+
+.previous-orders ul li #price {
+  color: #192a56;
+  padding-left: auto;
+}
+
+.checkout {
+  padding-top: 1em;
+  border-top: 1px solid var(--light-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

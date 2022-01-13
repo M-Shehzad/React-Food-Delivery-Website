@@ -3,6 +3,7 @@ import Menu from './components/homepage/Menu';
 import Login from './components/loginpage/Login';
 import Register from './components/loginpage/Register';
 import Cart from './components/Cart/Cart';
+import PrevOrder from './components/order history/PrevOrder';
 import { UserContext } from './UserContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -78,6 +79,7 @@ function App() {
           removeProduct={removeProduct}
           cartClearance={cartClearance}
           />} />
+        <Route path='/orderhistory' element={<PrevOrder />} />
       </Routes>
     </UserContext.Provider>
     </BrowserRouter>
