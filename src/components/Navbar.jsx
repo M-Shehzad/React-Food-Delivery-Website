@@ -17,7 +17,7 @@ export default function Navbar(){
         <Link to='cart'>
         <i className="fas fa-shopping-cart icons"><span className="cart-length">3</span></i>
         </Link>
-            {logState?<Link className="user" to='user'><i class="fas fa-user"></i>{logState}</Link>:''}
+            {logState?<Link className="user" to='user'><i className="fas fa-user"></i>{logState}</Link>:''}
         <Link onClick={()=>setLogState()} to='/login' id='loginlink'>{logState?'Logout':'Login'}</Link>
         </div>
     </header>

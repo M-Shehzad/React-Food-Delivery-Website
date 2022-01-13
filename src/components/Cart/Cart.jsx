@@ -27,7 +27,7 @@ export default function Cart(props){
             })
             })
             let data = await res.json()
-            if(data=='sucess'){
+            if(data==='sucess'){
                 alert('Your Order has been registered!');
             }
         }
@@ -47,7 +47,6 @@ export default function Cart(props){
         <h1 className="noitems">No items are added.</h1>
         )}
     {props.cartItems.map((item)=>{
-        console.log(...props.cartItems)
         return (<CartItem 
         key = {item.ITEM_NAME}
         ITEM_NAME = {item.ITEM_NAME}

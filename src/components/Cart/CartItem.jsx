@@ -1,6 +1,8 @@
 import React from 'react';
 import image from '../food.png';
-export default function(props){
+
+
+export default function CartItem(props){
     return(<div className="cart-container">
 
     <div className="cart-items">

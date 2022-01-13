@@ -24,7 +24,7 @@ export default function LogState(){
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
-            if(data=='success'){
+            if(data==='success'){
                 navigate('/');
                 setLogState(username);
                 alert('Login Sucessful!');
@@ -42,11 +42,11 @@ export default function LogState(){
             <h1 className="heading">Login</h1>
             <form>
                 <div className="textField">
-                    <input onChange={(e)=> setUsername(e.target.value)} type="text" name="username" id="username" autocomplete="off" required  value={username}/>
+                    <input onChange={(e)=> setUsername(e.target.value)} type="text" name="username" id="username" autoComplete="off" required  value={username}/>
                     <label>Username</label>
                 </div>
                 <div className="textField">
-                    <input onChange={(e)=> setPassword(e.target.value)} type="password" name="password" id="password" autocomplete="off" required value={password}/>
+                    <input onChange={(e)=> setPassword(e.target.value)} type="password" name="password" id="password" autoComplete="off" required value={password}/>
                     <label>password</label>
                 </div>
                 <button onClick={(e)=>{
