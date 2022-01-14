@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import './Navbar.css';
 import { UserContext } from "../UserContext";
 
-export default function Navbar(){
+export default function Navbar(props){
     const [logState,setLogState] = useContext(UserContext);
     return(<>
     <header>
@@ -15,7 +15,7 @@ export default function Navbar(){
 
         <div className="navbar-items">
         <Link to='cart'>
-        <i className="fas fa-shopping-cart icons"><span className="cart-length">3</span></i>
+        <i className="fas fa-shopping-cart icons"><span className="cart-length">{props.cartItems.length?props.cartItems.length:''}</span></i>
         </Link>
             {logState?<Link className="user" to='user'><i className="fas fa-user"></i>{logState}</Link>:''}
         <Link onClick={()=>setLogState()} to='/login' id='loginlink'>{logState?'Logout':'Login'}</Link>

@@ -57,7 +57,7 @@ export default function Cart(props){
         />)
 
     })}
-    {props.cartItems.length!==0 
+    {props.cartItems.length!==0
     &&(<><div className="checkout">
         <h1 className="checkout-title">sub total</h1>
         <h1 className="total-amount"><i className="fas fa-rupee-sign"></i>{totalPrice}</h1>

@@ -11,6 +11,7 @@ function App() {
 
   const [logState,setLogState] = useState();
   const [menuData, setmenuData] = useState([{}]);
+  const [cartItems,setCartItems] = useState([]);
 
   useEffect(() => {
     fetch('/menuItem')
@@ -22,7 +23,6 @@ function App() {
         
   }, [])
 
-  const [cartItems,setCartItems] = useState([]);
 
   const addProduct= (product)=>{
     const ProductExist = cartItems.find((item)=>item.ITEM_NAME === product.ITEM_NAME);
@@ -62,7 +62,9 @@ function App() {
   return (<>
     <BrowserRouter>
     <UserContext.Provider value={[logState,setLogState]}>
-        <Navbar />
+        <Navbar
+        cartItems = {cartItems}
+        />
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
