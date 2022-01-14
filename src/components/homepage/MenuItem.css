@@ -16,7 +16,7 @@
 
 .box h3 {
   color: var(--black);
-  font-size: 1.7rem;
+  font-size: clamp(1.5rem, 2vw, 2rem);
 }
 
 .box span {

@@ -1,6 +1,6 @@
 .previous-orders {
   padding: 1em 0;
-  max-width: 40rem;
+  width: max(25rem, 35%);
   margin: 5em auto;
   box-shadow: var(--box-shadow);
 }
@@ -13,6 +13,7 @@
 }
 
 .order-details h1 {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
   color: var(--black);
   white-space: nowrap;
 }
@@ -21,6 +22,7 @@
 }
 
 .order-details p {
+  font-size: clamp(0.6rem, 1vw, 1rem);
   text-align: right;
   color: #9c9c9c;
 }
@@ -37,11 +39,16 @@
   list-style: none;
 }
 .previous-orders ul li {
+  font-size: clamp(0.6rem, 1vw, 1.5rem);
   padding: 0.3em 0;
   border-bottom: 1px solid #e2e2e2;
   display: flex;
   justify-content: space-between;
   font-size: 1.2rem;
+}
+
+.previous-orders ul li > * {
+  font-size: clamp(1rem, 1vw, 1.5rem);
 }
 .previous-orders ul li span {
   color: #9c9c9c;
@@ -59,4 +66,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.checkout h1 {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
 }

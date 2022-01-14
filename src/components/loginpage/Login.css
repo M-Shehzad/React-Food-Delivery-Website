@@ -1,7 +1,7 @@
 .center {
   background-color: white;
   margin: 2em auto;
-  width: 30%;
+  width: min(27rem, 70%);
   border-radius: 10px;
   padding: 2em;
   box-shadow: var(--box-shadow);
