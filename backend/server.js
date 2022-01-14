@@ -41,7 +41,9 @@ app.get('/menuItem',(req,res)=>{
 app.post('/login',(req,res)=>{
   console.log(req.body)
   const {username,password} =req.body;
-  let sql=`SELECT username FROM registry WHERE username='${username}' and password='${password}' `;
+
+  let sql='SELECT username FROM registry WHERE username=? and password=? ';
+  sql = mysql.format(sql,[username,password])
   db.query(sql,(err,result)=>{
     if(err) throw err;
     console.log(result.length)
@@ -84,7 +86,8 @@ app.post('/orderhistory',(req,res)=>{
   ON orders.order_id=payment.order_id
   JOIN customer
   ON orders.cust_id=customer.cust_id
-  WHERE customer.username='${username}';`;
+  WHERE customer.username=?;`;
+  sql = mysql.format(sql,[username]);
   db.query(sql,async(err,result)=>{
     if(err) throw err;
     orderHistory=[...result];
@@ -93,7 +96,8 @@ app.post('/orderhistory',(req,res)=>{
       sql=`select order_from.*,menu.price from order_from 
       JOIN menu
       ON order_from.ITEM_NAME = menu.ITEM_NAME
-      WHERE ORDER_ID=${item.ORDER_ID};`
+      WHERE ORDER_ID=?;`;
+      sql=mysql.format(sql,[item.ORDER_ID]);
       if (!item.ITEMS){
         item.ITEMS=[];
       }
@@ -119,26 +123,30 @@ app.post('/order',(req,res)=>{
   //initializing the order with cust_id
   let sql = `INSERT INTO ORDERS (CUST_ID)
     SELECT (CUST_ID) FROM customer
-    WHERE USERNAME='${user}';`
-  db.query(sql,(err,result)=>{
+    WHERE USERNAME=?;`
+    sql = mysql.format(sql,[user]);
+    db.query(sql,(err,result)=>{
     if(err) throw err;
     //inserting the miscellenous values
     sql =`UPDATE orders
-    SET ORDER_TIME=NOW(),ADDRESS='${address}'
+    SET ORDER_TIME=NOW(),ADDRESS=?
     WHERE ORDER_ID = LAST_INSERT_ID();`;
+    sql = mysql.format(sql,[address])
     db.query(sql,(err,result)=>{
       if (err) throw err;
       console.log('Order Inserted!');
     })
     //insertion of payment
-    sql=`INSERT INTO payment values(LAST_INSERT_ID(),'${payment_type}',NULL);`;
+    sql=`INSERT INTO payment values(LAST_INSERT_ID(),?,NULL);`;
+    sql = mysql.format(sql,[payment_type])
     db.query(sql,(err,result)=>{
       if(err) throw err;
       console.log('payment sucessful!');  
     })
     //mapping all the items ordered
     ITEMS.map(item=>{
-      sql=`INSERT INTO order_from values(LAST_INSERT_ID(),'${item.ITEM_NAME}',${item.quantity});`;
+      sql=`INSERT INTO order_from values(LAST_INSERT_ID(),?,?);`;
+      sql = mysql.format(sql,[item.ITEM_NAME,item.quantity])
       db.query(sql,(err,result)=>{
         if(err) throw err;
         console.log('item inserted!');
@@ -146,7 +154,7 @@ app.post('/order',(req,res)=>{
     })
 
   })
-
+  res.json('success');
 })
 
 app.listen(4000,()=>{
