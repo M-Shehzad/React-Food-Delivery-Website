@@ -1,6 +1,6 @@
 .previous-orders {
   padding: 1em 0;
-  width: max(25rem, 35%);
+  width: clamp(27rem, 90%, 35rem);
   margin: 5em auto;
   box-shadow: var(--box-shadow);
 }

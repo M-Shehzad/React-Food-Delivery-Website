@@ -27,8 +27,9 @@ export default function Cart(props){
             })
             })
             let data = await res.json()
-            if(data==='sucess'){
+            if(data==='success'){
                 alert('Your Order has been registered!');
+                props.cartClearance();
             }
         }
         else{
