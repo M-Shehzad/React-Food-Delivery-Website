@@ -32,9 +32,7 @@ export default function PrevOrder(){
             navigate('/login');
         }
     },[logState])
-
-    console.log(prevOrders);
-    // console.log(prevOrders[0]['ITEMS'][3].ITEM_NAME);
+    
     if (!prevOrders) {
         return (<div></div>)
     }

@@ -2,12 +2,14 @@ import React from "react";
 
 export default function OrderItem(props){
     if(!props.ITEMS) return null;
+    const time = new Date(props.ORDER_TIME).toLocaleString('en-US', { weekday: 'short', year: 'numeric', month: 'short',hour: 'numeric', minute: 'numeric', hour12: true })
+    // const time = new Date (props.ORDER_TIME).toUTCString();
     return(<>
         <section className="previous-orders">
             <div className="order-details">
                 <h1><i className="fas fa-receipt"></i>ORDER#{props.ORDER_ID}</h1>
                 <div>
-                    <p>Ordered on {props.ORDER_TIME}</p>
+                    <p>Ordered on {time}</p>
                     <p>Delivered to {props.ADDRESS}</p>
                 </div>
             </div>
