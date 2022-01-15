@@ -1,6 +1,7 @@
 const express = require("express");
 
 const app = express();
+const port = 4000;
 
 // var mysql      = require('mysql');
 // var db = mysql.createConnection({
@@ -157,6 +158,6 @@ app.post('/order',(req,res)=>{
   res.json('success');
 })
 
-app.listen(4000,()=>{
+app.listen(process.env.PORT || port,()=>{
     console.log('server started?');
 });
