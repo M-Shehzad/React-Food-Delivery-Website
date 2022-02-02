@@ -7,10 +7,10 @@ export default function Menu(props){
     <h3 className='subheading'>Our dishes</h3>
     <h1 className='heading'>Menu</h1>
     <div className="box-container">
-    {props.menuData.map((data)=>{
+    {props.menuData.map((data,index)=>{
       // console.log(data.ITEM_NAME);
       return (<MenuItem 
-      key = {data.ITEM_NAME}
+      key = {index}
       ITEM_NAME = {data.ITEM_NAME}
       PRICE = {data.PRICE}
       addProduct = {props.addProduct}

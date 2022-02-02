@@ -7,7 +7,7 @@ export default function CartItem(props){
 
     <div className="cart-items">
             <div className="image-box">
-                <img src={image} alt="" />
+                <img src={require(`../item_img/${props.ITEM_NAME}.png`).default} alt="" />
             </div>
             <div className="cart-item-about">
                 <h1 className="cart-item-title">{props.ITEM_NAME}</h1>
