@@ -38,6 +38,9 @@ export default function PrevOrder(){
     }
     return(<>
     <h1 className="heading">Your orders</h1>
+    {prevOrders.length===0 && (
+        <h1 className="subheading">You have not made any orders yet.</h1>
+        )}
     {prevOrders.map((order)=>{
         return <OrderItem 
         key = {order.ORDER_ID}

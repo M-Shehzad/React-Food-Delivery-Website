@@ -57,18 +57,23 @@ app.post('/login',(req,res)=>{
 })
 
 app.post('/register',(req,res)=>{
-  const {username,password,email} =req.body;
+  const {name, username, password, email, phone} =req.body;
+  console.log('request received!')
   let sql=`SELECT username FROM registry WHERE EXISTS (SELECT username FROM registry WHERE username ='${username}')`;
   db.query(sql,(err,result)=>{
     if(err) throw err;
     if (result.length){
-      res.send('username already exists');
       console.log(result);
+      res.json('username already exists');
     }
     else{
       db.query(`INSERT INTO registry VALUES ('${username}','${password}','${email}')`,(err,result)=>{
         if(err) throw err;
-        res.redirect('/');
+      })
+      db.query(`INSERT INTO customer (NAME,PHONE_NO,USERNAME) VALUES('${name}','${phone}','${username}');`,(err,result)=>{
+        if(err) throw err;
+        res.json('registered');
+
       })
     }
   })

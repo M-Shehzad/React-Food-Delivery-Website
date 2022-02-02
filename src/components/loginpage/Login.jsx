@@ -5,7 +5,7 @@ import './Login.css';
 
 export default function LogState(){
     const [logState,setLogState] = useContext(UserContext);
-    let navigate =useNavigate();
+    const navigate =useNavigate();
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
 
@@ -37,23 +37,23 @@ export default function LogState(){
     }
 
 
-        return(
-        <div className="center">
-            <h1 className="heading">Login</h1>
-            <form>
-                <div className="textField">
-                    <input onChange={(e)=> setUsername(e.target.value)} type="text" name="username" id="username" autoComplete="off" required  value={username}/>
-                    <label>Username</label>
-                </div>
-                <div className="textField">
-                    <input onChange={(e)=> setPassword(e.target.value)} type="password" name="password" id="password" autoComplete="off" required value={password}/>
-                    <label>password</label>
-                </div>
-                <button onClick={(e)=>{
-                    e.preventDefault();
-                    login(username,password);
-                }} className="btn">Login</button>
-            </form>
-            <div className='signupLink'>Not a member? <Link  to='/register'className="subheading">Register</Link></div>
-        </div>)
+    return(
+    <div className="center">
+        <h1 className="heading">Login</h1>
+        <form>
+            <div className="textField">
+                <input onChange={(e)=> setUsername(e.target.value)} type="text" name="username" id="username" autoComplete="off" required  value={username}/>
+                <label>Username</label>
+            </div>
+            <div className="textField">
+                <input onChange={(e)=> setPassword(e.target.value)} type="password" name="password" id="password" autoComplete="off" required value={password}/>
+                <label>password</label>
+            </div>
+            <button onClick={(e)=>{
+                e.preventDefault();
+                login(username,password);
+            }} className="btn">Login</button>
+        </form>
+        <div className='signupLink'>Not a member? <Link  to='/register'className="subheading">Register</Link></div>
+    </div>)
 }
