@@ -14,7 +14,7 @@ function App() {
   const [cartItems,setCartItems] = useState([]);
 
   useEffect(() => {
-    fetch('https://fooddelivery-mysql.herokuapp.com/menuItem')
+    fetch('/menuItem')
       .then(response => response.json())
       .then(data => {
         // console.log(data)
