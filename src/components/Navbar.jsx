@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import {Link} from 'react-router-dom';
 import './Navbar.css';
-import { UserContext } from "../UserContext";
+import { UserContext } from "../Contexts";
 
 export default function Navbar(props){
     const [logState,setLogState] = useContext(UserContext);

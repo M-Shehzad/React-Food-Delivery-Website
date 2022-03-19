@@ -7,6 +7,30 @@
   box-shadow: var(--box-shadow);
 }
 
+.tabs-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.tabs-container .tab {
+  font-size: 1.75rem;
+  color: var(--light-color);
+  /* border-radius: 10rem; */
+  padding: 0.3em 1em;
+}
+
+.tabs-container .tab.active {
+  border-bottom: 2px solid var(--green);
+  color: var(--green);
+}
+
+.tabs-container .tab:hover {
+  background: rgba(39, 174, 96, 0.25);
+  color: green;
+  border-bottom: 2px solid var(--green);
+  cursor: pointer;
+}
+
 .center form {
   padding: 0 auto;
 }

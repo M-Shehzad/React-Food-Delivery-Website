@@ -4,11 +4,11 @@ import Login from './components/loginpage/Login';
 import Register from './components/loginpage/Register';
 import Cart from './components/Cart/Cart';
 import PrevOrder from './components/order history/PrevOrder';
-import { UserContext } from './UserContext';
+import { UserContext,adminContext } from './Contexts';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 function App() {
-
+  const [isAdmin,setIsAdmin] = useState();
   const [logState,setLogState] = useState();
   const [menuData, setmenuData] = useState([{}]);
   const [cartItems,setCartItems] = useState([]);
@@ -62,6 +62,7 @@ function App() {
   return (<>
     <BrowserRouter>
     <UserContext.Provider value={[logState,setLogState]}>
+      <adminContext.Provider value={[isAdmin,setIsAdmin]}>
         <Navbar
         cartItems = {cartItems}
         />
@@ -83,6 +84,7 @@ function App() {
           />} />
         <Route path='/orderhistory' element={<PrevOrder />} />
       </Routes>
+      </adminContext.Provider>
     </UserContext.Provider>
     </BrowserRouter>
   </>)

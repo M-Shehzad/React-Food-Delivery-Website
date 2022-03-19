@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
 import {Link,useNavigate} from 'react-router-dom';
-import { UserContext } from '../../UserContext';
+import { UserContext,adminContext } from '../../Contexts';
 import './Login.css';
 
 export default function LogState(){
+    const [isAdmin,setIsAdmin] = useContext(adminContext);
     const [logState,setLogState] = useContext(UserContext);
+
     const navigate =useNavigate();
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
@@ -39,7 +41,10 @@ export default function LogState(){
 
     return(
     <div className="center">
-        <h1 className="heading">Login</h1>
+        <div className="tabs-container">
+        <h1 className={!isAdmin?"tab active":"tab"} onClick={()=>setIsAdmin(false)}>Login</h1>
+        <h1 className={isAdmin?"tab active":"tab"} onClick={()=>setIsAdmin(true)}>admin</h1>
+        </div>
         <form>
             <div className="textField">
                 <input onChange={(e)=> setUsername(e.target.value)} type="text" name="username" id="username" autoComplete="off" required  value={username}/>

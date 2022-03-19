@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import './CartItem';
 import './Cart.css';
 import CartItem from './CartItem';
-import { UserContext } from '../../UserContext';
+import { UserContext } from '../../Contexts';
 export default function Cart(props){
     let navigate = useNavigate();
     const [logState,setLogState] = useContext(UserContext);

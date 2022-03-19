@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import {useNavigate} from 'react-router-dom';
-import { UserContext } from '../../UserContext';
+import { UserContext } from '../../Contexts';
 
 import OrderItem from './OrderItem';
 import './prevOrder.css';
