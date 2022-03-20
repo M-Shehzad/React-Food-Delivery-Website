@@ -28,6 +28,8 @@
   background: rgba(39, 174, 96, 0.25);
   color: green;
   border-bottom: 2px solid var(--green);
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
   cursor: pointer;
 }
 

@@ -161,8 +161,22 @@ app.post('/order',(req,res)=>{
 
   })
   res.json('success');
-})
+});
 
-app.listen(process.env.PORT || port,()=>{
+// Admin routes
+app.get('/msales',(req,res)=>{
+  let sql = `
+  select DATE_FORMAT(ORDER_TIME,'%m-%Y'),count(*)
+  from orders
+  group by month(order_time), year(order_time)
+  order by year(order_time),month(order_time) asc;
+  `
+  db.query(sql,(err,result)=>{
+    if (err) throw err;
+    res.json(result);
+  })
+});
+
+app.listen(port,()=>{
     console.log('server started?');
 });

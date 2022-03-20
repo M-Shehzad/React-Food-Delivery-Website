@@ -56,7 +56,7 @@ section {
   background-color: var(--green);
 }
 
-.dishes .box-container {
+.box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   grid-gap: 1.5rem;

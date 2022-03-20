@@ -4,6 +4,7 @@ import Login from './components/loginpage/Login';
 import Register from './components/loginpage/Register';
 import Cart from './components/Cart/Cart';
 import PrevOrder from './components/order history/PrevOrder';
+import Admin from './components/admin/Admin';
 import { UserContext,adminContext } from './Contexts';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -83,6 +84,7 @@ function App() {
           cartClearance={cartClearance}
           />} />
         <Route path='/orderhistory' element={<PrevOrder />} />
+        <Route path='/admin' element={<Admin />}/>
       </Routes>
       </adminContext.Provider>
     </UserContext.Provider>

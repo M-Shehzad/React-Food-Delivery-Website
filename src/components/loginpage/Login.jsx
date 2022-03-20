@@ -13,6 +13,7 @@ export default function LogState(){
 
     function login(username,password){
         console.log(username,password);
+        
         fetch('/login',{
             method: 'POST',
             headers:{
