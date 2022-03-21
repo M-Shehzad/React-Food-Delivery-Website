@@ -10,6 +10,7 @@ export default function Navbar(props){
         <Link to='/' className="logo"><i className="fas fa-utensils"></i>Kudla Eats</Link>
 
         <nav className="navbar">
+            <Link className="navlink" to='/admin'>admin</Link>
             <Link className="navlink" to='/orderHistory'>Order History</Link>
         </nav>
 

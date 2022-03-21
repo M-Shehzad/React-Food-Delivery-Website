@@ -10,8 +10,8 @@ export default function MenuItem(props){
     return (
         <div className='box'>
             <img src={require(`../item_img/${props.ITEM_NAME}.png`).default} alt="" />
-            <h3>{props.ITEM_NAME}</h3>
-            <span><i className="fas fa-rupee-sign"></i>{props.PRICE}</span>
+            <h3 className='item-name'>{props.ITEM_NAME}</h3>
+            <span className='item-price'><i className="fas fa-rupee-sign"></i>{props.PRICE}</span>
             <button onClick={()=>props.addProduct(props)} className='btn'>Add to cart</button>
         </div>
     )

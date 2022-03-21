@@ -1,0 +1,65 @@
+.admin-Dashboard > div {
+  margin-bottom: 3em;
+}
+.admin-Dashboard .box {
+  text-align: start;
+}
+
+.admin-Dashboard .box > * {
+  display: block;
+}
+
+.admin-Dashboard .feature-value {
+  color: var(--green);
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: var(--green);
+  display: block;
+}
+
+.box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-gap: 1.5rem;
+}
+
+.Charts {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 1em;
+}
+
+.lineChart {
+  padding: 1.5em;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+
+.pieChart {
+  padding: 1.5em;
+  padding-top: 0.5em;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+
+.pieChart > h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0.5em;
+  /* color: var(--black); */
+}
+
+@media (max-width: 1000px) {
+  .Charts {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1em;
+  }
+}

@@ -166,9 +166,13 @@ app.post('/order',(req,res)=>{
 // Admin routes
 app.get('/msales',(req,res)=>{
   let sql = `
-  select DATE_FORMAT(ORDER_TIME,'%m-%Y'),count(*)
+  select orders.order_id,DATE_FORMAT(ORDER_TIME,'%m-%Y') as month,count(*) as orders,sum(menu.price) as sales
   from orders
-  group by month(order_time), year(order_time)
+  JOIN order_from
+  ON orders.ORDER_ID = order_from.ORDER_ID
+  JOIN menu
+  ON order_from.item_name=menu.item_name
+  group by month(order_time),year(order_time)
   order by year(order_time),month(order_time) asc;
   `
   db.query(sql,(err,result)=>{
@@ -176,6 +180,30 @@ app.get('/msales',(req,res)=>{
     res.json(result);
   })
 });
+
+app.get('/bestseller',(req,res)=>{
+  let sql = `
+  select ITEM_NAME, COUNT(*)*QTY as qty
+  from order_from
+  group by ITEM_NAME
+  ORDER BY COUNT(*) DESC;
+  `
+  db.query(sql,(err,result)=>{
+    if (err) throw err;
+    res.json(result);
+  })
+});
+
+app.get('/usercount',(req,res)=>{
+  let sql=`
+  select count(*) as total_users
+  from customer;
+  `
+  db.query(sql,(err,result)=>{
+    if (err) throw err;
+    res.json(result);
+  })
+})
 
 app.listen(port,()=>{
     console.log('server started?');
