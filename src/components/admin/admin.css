@@ -50,9 +50,47 @@
 }
 
 .pieChart > h2 {
-  font-size: 1.5rem;
+  color: var(--black);
+  font-size: 1.6rem;
   padding-bottom: 0.5em;
   /* color: var(--black); */
+}
+
+/* latest sales table */
+.latestSales {
+  padding: 1.5em;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+.table-title {
+  color: var(--black);
+  font-size: 2rem;
+}
+.sales-table {
+  width: 100%;
+  border-spacing: 1em;
+}
+
+.salestr,
+.salesth {
+  color: var(--black);
+  font-size: 1.2rem;
+  text-align: start;
+}
+tbody .salesCell {
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+tbody .customer {
+  font-weight: 600;
+}
+
+tbody .amount {
+  color: var(--green);
+  font-weight: 600;
 }
 
 @media (max-width: 1000px) {

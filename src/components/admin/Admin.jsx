@@ -3,46 +3,58 @@ import './admin.css'
 import {Line,Pie} from 'react-chartjs-2';
 import {Chart as Chartjs} from 'chart.js/auto';
 
+import LatestSalestd from './LatestSaletd';
 
 export default function Admin(){
-    const [revenue,setRevenue] = useState();
-    const [salesData,setSalesData] = useState();
-    const [bestSeller,setBestSeller] = useState();
-    const [userCount,setUserCount] = useState();
+  const [latestSales,setLatestSales] =  useState();
+  const [revenue,setRevenue] = useState();
+  const [salesData,setSalesData] = useState();
+  const [bestSeller,setBestSeller] = useState();
+  const [userCount,setUserCount] = useState();
 
-    //fetching the total number of users
-    useEffect(()=>{
-      fetch('/usercount')
-      .then(res => res.json())
-      .then(data=>{
-        setUserCount(data[0].total_users)
-      })
-    },[])
+  //fetching the total number of users
+  useEffect(()=>{
+    fetch('/usercount')
+    .then(res => res.json())
+    .then(data=>{
+      setUserCount(data[0].total_users)
+    })
+  },[])
 
-    //fetching no. of sales per month
-    useEffect(() => {
-      fetch('/msales')
-        .then(response => response.json())
-        .then(data => {
-          setRevenue(
-            data.map((data)=>data.sales)
-          )
-          setSalesData({
-            labels:data.map((data)=>data.month),
-            datasets: [{
-              label: 'No. of orders per month',
-              data:data.map((data)=>data.orders),
-              backgroundColor:'rgba(39, 174, 96,0.2)',
-              fill:true,
-              borderColor:'rgba(39,174,96,0.8)',//rgba(39,174,96,0.8)
-              pointBackgroundColor: 'white',
-              tension:0.4,
-            }]
-          });
+  //fetching data to present on the table
+  useEffect(()=>{
+    fetch('/latestSales')
+    .then(res => res.json())
+    .then(data=> setLatestSales(data))
+  },[])
+  console.log(latestSales);
+
+  //fetching no. of sales per month
+  useEffect(() => {
+    fetch('/msales')
+      .then(response => response.json())
+      .then(data => {
+        setRevenue(
+          data.map((data)=>data.sales)
+        )
+        setSalesData({
+          labels:data.map((data)=>data.month),
+          datasets: [{
+            label: 'No. of orders per month',
+            data:data.map((data)=>data.orders),
+            backgroundColor:'rgba(39, 174, 96,0.2)',
+            fill:true,
+            borderColor:'rgba(39,174,96,0.8)',//rgba(39,174,96,0.8)
+            pointBackgroundColor: 'white',
+            tension:0.4,
+          }]
         });
-            
-      }, [])
-    //configuration of piechart data
+      });
+  }, [])
+
+
+    
+    //fetching and configuration of bestselling items for piechart use
     useEffect(()=>{
       fetch('/bestseller')
       .then(res=>res.json())
@@ -106,50 +118,75 @@ export default function Admin(){
     }
     
 
-    return (<section className='admin-Dashboard'>
-      <div className="box-container">
-        <div className='box'>
-            <span className='feature-title'>Revenue</span>
-            <span className='feature-value'><i className="fas fa-rupee-sign"></i>{revenue[revenue.length-1]-revenue[revenue.length-2]}</span>
-            <span>Compared to last month</span>
-        </div>
-        <div className='box'>
-            <span className='feature-title'>Users</span>
-            <span className='feature-value'>{userCount}</span>
-            <span>Total customers</span>
-        </div>
-        <div className='box'>
-            <span className='feature-title'>Revenue</span>
-            <span className='feature-value'><i className="fas fa-rupee-sign"></i>2,000</span>
-            <span>Compared to last month</span>
-        </div>
+  return (<section className='admin-Dashboard'>
+    <div className="box-container">
+      <div className='box'>
+          <span className='feature-title'>Revenue</span>
+          <span className='feature-value'><i className="fas fa-rupee-sign"></i>{revenue[revenue.length-1]-revenue[revenue.length-2]}</span>
+          <span>Compared to last month</span>
       </div>
-      <div className="Charts">
-        <div className="lineChart">
-          <Line data={salesData} options={{
-            hitRadius:30,
-            hoverRadius:10,
-            // responsive:true,
-            scales:{
-              y:{
-                beginAtZero: true
-              }
-            }
-          }}/>
-        </div>
-        <div className="pieChart">
-          <h2 className='subheading'>BestSellers</h2>
-          <Pie data={bestSeller} options={{
-            plugins:{
-              legend:{
-                display:false,
-              }
-            },
-            hitRadius:30,
-            hoverRadius:10,
-            // responsive:true
-          }}/>
-        </div>
+      <div className='box'>
+          <span className='feature-title'>Users</span>
+          <span className='feature-value'>{userCount}</span>
+          <span>Total customers</span>
+      </div>
+      <div className='box'>
+          <span className='feature-title'>Revenue</span>
+          <span className='feature-value'><i className="fas fa-rupee-sign"></i>2,000</span>
+          <span>Compared to last month</span>
+      </div>
     </div>
-    </section>)
+    <div className="Charts">
+      <div className="lineChart">
+        <Line data={salesData} options={{
+          hitRadius:30,
+          hoverRadius:10,
+          // responsive:true,
+          scales:{
+            y:{
+              beginAtZero: true
+            }
+          }
+        }}/>
+      </div>
+      <div className="pieChart">
+        <h2 className='subheading'>Best Sellers</h2>
+        <Pie data={bestSeller} options={{
+          plugins:{
+            legend:{
+              display:false,
+            }
+          },
+          hitRadius:30,
+          hoverRadius:10,
+          // responsive:true
+        }}/>
+      </div>
+  </div>
+  <div className="latestSales">
+    <h3 className='table-title'>Latest Transactions</h3>
+    <table className="sales-table">
+      <tr className="salestr">
+        <th className='salesth'>ORDER ID</th>
+        <th className='salesth'>CUSTOMER</th>
+        <th className='salesth'>DATE</th>
+        <th className='salesth'>LOCATION</th>
+        <th className='salesth'>AMOUNT</th>
+      </tr>
+      <tbody>
+        {latestSales.map((cell)=>{
+          return <LatestSalestd
+          key = {cell.order_id}
+          order_id = {cell.order_id}
+          name = {cell.name}
+          order_time = {cell.order_time}
+          address = {cell.address}
+          price = {cell.price}
+          />
+        })}
+      </tbody>
+    </table>
+
+  </div>
+  </section>)
 }

@@ -43,13 +43,13 @@ app.post('/login',(req,res)=>{
   console.log(req.body)
   const {username,password} =req.body;
 
-  let sql='SELECT username FROM registry WHERE username=? and password=? ';
+  let sql='SELECT username,isAdmin FROM registry WHERE username=? and password=? ';
   sql = mysql.format(sql,[username,password])
   db.query(sql,(err,result)=>{
     if(err) throw err;
-    console.log(result.length)
+    console.log(result)
     if(result.length){
-      res.json('success')
+      res.json(result[0])
     }
     else{
       res.json('Invalid');
@@ -68,7 +68,7 @@ app.post('/register',(req,res)=>{
       res.json('username already exists');
     }
     else{
-      db.query(`INSERT INTO registry VALUES ('${username}','${password}','${email}')`,(err,result)=>{
+      db.query(`INSERT INTO registry (username,password,email) VALUES ('${username}','${password}','${email}')`,(err,result)=>{
         if(err) throw err;
       })
       db.query(`INSERT INTO customer (NAME,PHONE_NO,USERNAME) VALUES('${name}','${phone}','${username}');`,(err,result)=>{
@@ -198,6 +198,26 @@ app.get('/usercount',(req,res)=>{
   let sql=`
   select count(*) as total_users
   from customer;
+  `
+  db.query(sql,(err,result)=>{
+    if (err) throw err;
+    res.json(result);
+  })
+})
+
+app.get('/latestSales',(req,res)=>{
+  let sql=`
+  select orders.order_id,customer.name,order_time,address,sum(menu.price) as price
+  from orders
+  JOIN customer
+  on orders.cust_id = customer.cust_id
+  join order_from
+  on orders.order_id = order_from.order_id
+  join menu
+  on order_from.item_name = menu.item_name
+  group by order_id
+  order by order_time desc
+  limit 10;
   `
   db.query(sql,(err,result)=>{
     if (err) throw err;

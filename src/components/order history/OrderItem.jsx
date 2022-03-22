@@ -2,6 +2,7 @@ import React from "react";
 
 export default function OrderItem(props){
     if(!props.ITEMS) return null;
+    
     const time = new Date(props.ORDER_TIME).toLocaleString('en-US', { weekday: 'short', year: 'numeric', month: 'short',hour: 'numeric', minute: 'numeric', hour12: true })
     // const time = new Date (props.ORDER_TIME).toUTCString();
     return(<>

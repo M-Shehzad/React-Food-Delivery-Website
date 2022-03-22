@@ -27,9 +27,10 @@ export default function LogState(){
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
-            if(data==='success'){
+            if(data['username']===username){
                 navigate('/');
                 setLogState(username);
+                setIsAdmin(data['isAdmin']);
                 alert('Login Sucessful!');
             }
             else{
@@ -43,8 +44,10 @@ export default function LogState(){
     return(
     <div className="center">
         <div className="tabs-container">
-        <h1 className={!isAdmin?"tab active":"tab"} onClick={()=>setIsAdmin(false)}>Login</h1>
-        <h1 className={isAdmin?"tab active":"tab"} onClick={()=>setIsAdmin(true)}>admin</h1>
+
+        {/* <h1 className={!isAdmin?"tab active":"tab"} onClick={()=>setIsAdmin(false)}>Login</h1>
+        <h1 className={isAdmin?"tab active":"tab"} onClick={()=>setIsAdmin(true)}>admin</h1> */}
+        <h1 className="heading">Login</h1>
         </div>
         <form>
             <div className="textField">
