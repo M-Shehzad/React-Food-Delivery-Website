@@ -6,6 +6,15 @@ import { UserContext,adminContext } from "../Contexts";
 export default function Navbar(props){
     const [isAdmin,setIsAdmin] = useContext(adminContext);
     const [logState,setLogState] = useContext(UserContext);
+
+    //Logout Function
+    const logOut = ()=>{
+        setLogState();
+        setIsAdmin();
+        localStorage.removeItem('username');
+        localStorage.removeItem('isAdmin');
+    }
+
     return(<>
     <header>
         <Link to='/' className="logo"><i className="fas fa-utensils"></i>Kudla Eats</Link>
@@ -20,7 +29,7 @@ export default function Navbar(props){
         <i className="fas fa-shopping-cart icons"><span className="cart-length">{props.cartItems.length?props.cartItems.length:''}</span></i>
         </Link>
             {logState?<Link className="user" to='user'><i className="fas fa-user"></i>{logState}</Link>:''}
-        <Link onClick={()=>{setLogState();setIsAdmin();}} to='/login' id='loginlink'>{logState?'Logout':'Login'}</Link>
+        <Link onClick={()=>logOut()} to='/login' id='loginlink'>{logState?'Logout':'Login'}</Link>
         </div>
     </header>
     </>)

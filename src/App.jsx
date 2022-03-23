@@ -9,8 +9,8 @@ import { UserContext,adminContext } from './Contexts';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 function App() {
-  const [isAdmin,setIsAdmin] = useState();
-  const [logState,setLogState] = useState();
+  const [isAdmin,setIsAdmin] = useState(localStorage.getItem('isAdmin')?localStorage.getItem('isAdmin'):'');
+  const [logState,setLogState] = useState(localStorage.getItem('username')?localStorage.getItem('username'):'');
   const [menuData, setmenuData] = useState([{}]);
   const [cartItems,setCartItems] = useState([]);
 

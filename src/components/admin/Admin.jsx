@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import './admin.css'
-import {Line,Pie} from 'react-chartjs-2';
+import {Doughnut, Line,Pie} from 'react-chartjs-2';
 import {Chart as Chartjs} from 'chart.js/auto';
 
 import LatestSalestd from './LatestSaletd';
@@ -151,7 +151,7 @@ export default function Admin(){
       </div>
       <div className="pieChart">
         <h2 className='subheading'>Best Sellers</h2>
-        <Pie data={bestSeller} options={{
+        <Doughnut data={bestSeller} options={{
           plugins:{
             legend:{
               display:false,

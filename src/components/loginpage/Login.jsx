@@ -31,6 +31,8 @@ export default function LogState(){
                 navigate('/');
                 setLogState(username);
                 setIsAdmin(data['isAdmin']);
+                localStorage.setItem('username',username);
+                localStorage.setItem('isAdmin',isAdmin);
                 alert('Login Sucessful!');
             }
             else{
