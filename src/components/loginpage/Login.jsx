@@ -32,7 +32,7 @@ export default function LogState(){
                 setLogState(username);
                 setIsAdmin(data['isAdmin']);
                 localStorage.setItem('username',username);
-                localStorage.setItem('isAdmin',isAdmin);
+                localStorage.setItem('isAdmin',data['isAdmin']);
                 alert('Login Sucessful!');
             }
             else{

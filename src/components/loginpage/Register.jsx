@@ -35,6 +35,7 @@ export default function Register(){
                 navigate('/');
                 alert('Registered Successfully!');
                 setLogState(username);
+                localStorage.setItem('username',username);
             }
             else{
                 alert(data);

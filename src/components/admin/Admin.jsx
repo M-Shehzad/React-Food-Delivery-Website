@@ -27,7 +27,6 @@ export default function Admin(){
     .then(res => res.json())
     .then(data=> setLatestSales(data))
   },[])
-  console.log(latestSales);
 
   //fetching no. of sales per month
   useEffect(() => {
@@ -130,11 +129,11 @@ export default function Admin(){
           <span className='feature-value'>{userCount}</span>
           <span>Total customers</span>
       </div>
-      <div className='box'>
+      {/* <div className='box'>
           <span className='feature-title'>Revenue</span>
           <span className='feature-value'><i className="fas fa-rupee-sign"></i>2,000</span>
           <span>Compared to last month</span>
-      </div>
+      </div> */}
     </div>
     <div className="Charts">
       <div className="lineChart">

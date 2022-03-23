@@ -47,13 +47,18 @@ app.post('/login',(req,res)=>{
   sql = mysql.format(sql,[username,password])
   db.query(sql,(err,result)=>{
     if(err) throw err;
-    console.log(result)
-    if(result.length){
-      res.json(result[0])
+    console.log(result);
+    try{
+      if(!result.length){
+        throw 'Invalid';
+      }
+      res.json(result[0]);
+
     }
-    else{
-      res.json('Invalid');
+    catch(err){
+      res.json(err);
     }
+    
   })
 })
 
@@ -69,12 +74,17 @@ app.post('/register',(req,res)=>{
     }
     else{
       db.query(`INSERT INTO registry (username,password,email) VALUES ('${username}','${password}','${email}')`,(err,result)=>{
-        if(err) throw err;
-      })
-      db.query(`INSERT INTO customer (NAME,PHONE_NO,USERNAME) VALUES('${name}','${phone}','${username}');`,(err,result)=>{
-        if(err) throw err;
-        res.json('registered');
-
+        try{
+          if(err) throw err;
+          db.query(`INSERT INTO customer (NAME,PHONE_NO,USERNAME) VALUES('${name}','${phone}','${username}');`,(err,result)=>{
+            // if(err) throw err;
+            res.json('registered');
+            
+          })
+        }
+        catch(err){
+          res.json('Invalid input, try again!');
+        }
       })
     }
   })
@@ -92,7 +102,8 @@ app.post('/orderhistory',(req,res)=>{
   ON orders.order_id=payment.order_id
   JOIN customer
   ON orders.cust_id=customer.cust_id
-  WHERE customer.username=?;`;
+  WHERE customer.username=?
+  order by order_time desc;`;
   sql = mysql.format(sql,[username]);
   db.query(sql,async(err,result)=>{
     if(err) throw err;
@@ -166,7 +177,7 @@ app.post('/order',(req,res)=>{
 // Admin routes
 app.get('/msales',(req,res)=>{
   let sql = `
-  select orders.order_id,DATE_FORMAT(ORDER_TIME,'%m-%Y') as month,count(*) as orders,sum(menu.price) as sales
+  select orders.order_id,DATE_FORMAT(ORDER_TIME,'%m-%Y') as month,count(*) as orders,sum(qty*menu.price) as sales
   from orders
   JOIN order_from
   ON orders.ORDER_ID = order_from.ORDER_ID
@@ -207,7 +218,7 @@ app.get('/usercount',(req,res)=>{
 
 app.get('/latestSales',(req,res)=>{
   let sql=`
-  select orders.order_id,customer.name,order_time,address,sum(menu.price) as price
+  select orders.order_id,customer.name,order_time,address,sum(qty*menu.price) as price
   from orders
   JOIN customer
   on orders.cust_id = customer.cust_id
