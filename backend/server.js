@@ -3,18 +3,12 @@ const express = require("express");
 const app = express();
 const port = 4000;
 
-// var mysql      = require('mysql');
-// var db = mysql.createConnection({
-//   host     : 'bbseynlhpr0e3hporhjk-mysql.services.clever-cloud.com',
-//   user     : 'uorcv6k7fx8uyrbe',
-//   password : 'QD54Z5MQC3NqltxUlowJ'
-// });
 
 var mysql      = require('mysql');
 var db = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '876a876a876A',
+  host: process.env.host,
+  user: process.env.user,
+  password: process.env.password,
   database: 'fooddelivery'
 });
 
@@ -26,6 +20,7 @@ db.connect(function(err) {
 
   console.log('connected as id ' + db.threadId);
 });
+
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
@@ -44,7 +39,7 @@ app.post('/login',(req,res)=>{
   const {username,password} =req.body;
 
   let sql='SELECT username,isAdmin FROM registry WHERE username=? and password=? ';
-  sql = mysql.format(sql,[username,password])
+  sql = mysql.format(sql,[username,password]);
   db.query(sql,(err,result)=>{
     if(err) throw err;
     console.log(result);
@@ -65,7 +60,8 @@ app.post('/login',(req,res)=>{
 app.post('/register',(req,res)=>{
   const {name, username, password, email, phone} =req.body;
   console.log('request received!')
-  let sql=`SELECT username FROM registry WHERE EXISTS (SELECT username FROM registry WHERE username ='${username}')`;
+  let sql=`SELECT username FROM registry WHERE EXISTS (SELECT username FROM registry WHERE username =?)`;
+  sql = mysql.format(sql,[username]);
   db.query(sql,(err,result)=>{
     if(err) throw err;
     if (result.length){
@@ -73,10 +69,10 @@ app.post('/register',(req,res)=>{
       res.json('username already exists');
     }
     else{
-      db.query(`INSERT INTO registry (username,password,email) VALUES ('${username}','${password}','${email}')`,(err,result)=>{
+      db.query(sql.format(`INSERT INTO registry (username,password,email) VALUES (?,?,?)`,[username,password,email]),(err,result)=>{
         try{
           if(err) throw err;
-          db.query(`INSERT INTO customer (NAME,PHONE_NO,USERNAME) VALUES('${name}','${phone}','${username}');`,(err,result)=>{
+          db.query(sql.format(`INSERT INTO customer (NAME,PHONE_NO,USERNAME) VALUES(?,?,?)`,[name,phone,username]),(err,result)=>{
             // if(err) throw err;
             res.json('registered');
             
@@ -237,5 +233,5 @@ app.get('/latestSales',(req,res)=>{
 })
 
 app.listen(port,()=>{
-    console.log('server started?');
+    console.log('server started');
 });
