@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Online Food Ordering System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Online Food Ordering System is a web application that allows users to browse restaurant menus, place orders, and view their previous orders in a user-friendly and visually appealing interface. Additionally, the system provides an admin dashboard that offers statistical insights into monthly sales, revenue, and user data, all visualized using ChartJS.
 
-## Available Scripts
+## Project Overview
 
-In the project directory, you can run:
+This project was developed as part of the Database Management System laboratory subject during 2nd year of university. It serves as a comprehensive example of building a web application using ExpressJS, ReactJS, MySQL, and ChartJS.
 
-### `npm start`
+### Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 3NF normalized database for efficient data storage and management.
+- User-friendly restaurant menu browsing and ordering system.
+- virutal shopping cart that updates in real time.
+- Order history for users.
+- Admin dashboard for monitoring monthly sales, revenue, and user statistics.
+- Interactive charts and graphs powered by ChartJS.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Database Schema
 
-### `npm test`
+The database schema for this project consists of 5 tables. Here's a simplified representation of the schema in the format required by the university :
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Database Schema](./schema_diagram.png)
 
-### `npm run build`
+## Screenshots
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Login and Registration
+![Login](./screenshots/login.jpeg)
+![Registration](./screenshots/register.jpeg)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Restaurant Menu
+![Menu](./screenshots/menu.jpg)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Shopping Cart
 
-### `npm run eject`
+![Shopping cart](./screenshots/shopping_cart.jpeg)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Order History
+![Order History](./screenshots/order_history.jpeg)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Admin Dashboard
+![Admin Dashboard](./screenshots/admin_dashboard.jpeg)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Technologies Used
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Frontend: ReactJS
+- Backend: ExpressJS
+- Database: MySQL
+- Data Visualization: ChartJS
 
-## Learn More
+## How to Run the Project
+#### Requirements
+- Install the required Node.js packages:
+```npm install```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Create the database with the tables specified in [Schema_creation](./backend/schema_creation.txt)
+- Specify mySQL environment variables like host, user and password.
+### Backend (Express.js)
+1. Navigate to the `backend` directory: ```cd backend```
+2. Start the server: ```node ./server.js```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Frontend (React.js)
+1. run the following command: ```npm start```
 
-### Code Splitting
+### Access the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+You can now access the application in your web browser:
 
-### Analyzing the Bundle Size
+- User Interface: [http://localhost:3000](http://localhost:3000)
+- Backend API: [http://localhost:4000](http://localhost:4000)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Make sure that both the backend and frontend servers are running simultaneously for the full functionality of the application.
